@@ -3,48 +3,6 @@ import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 import ScrollForMore from "@/components/scrollForMore";
-import { useWindowSize } from "usehooks-ts";
-
-const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
-
-const firstName = {
-  initial: {
-    y: 0,
-  },
-  animate: {
-    y: 0,
-    transition: {
-      delayChildren: 0.6,
-      staggerChildren: 0.04,
-      staggerDirection: -1,
-    },
-  },
-};
-
-const lastName = {
-  initial: {
-    y: 0,
-  },
-  animate: {
-    y: 0,
-    transition: {
-      delayChildren: 0.6,
-      staggerChildren: 0.04,
-      staggerDirection: 1,
-    },
-  },
-};
-
-const letter = {
-  initial: {
-    y: 400,
-  },
-  animate: {
-    y: 0,
-    //@ts-ignore
-    transition: { duration: 1, ...transition },
-  },
-};
 
 const Page = () => {
   const SearchParams = useSearchParams();
@@ -53,7 +11,6 @@ const Page = () => {
 
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
-  const { height, width } = useWindowSize();
 
   return (
     <motion.div
@@ -65,13 +22,16 @@ const Page = () => {
         <div className="row center top-row">
           <div className="top">
             <motion.div
-              initial={{ opacity: 1, y: 20 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{
                 opacity: 1,
                 y: 0,
-                transition: { delay: 1.2, ...transition },
+                transition: {
+                  delay: 1.2,
+                  duration: 1.4,
+                },
               }}
-              className="details z-20">
+              className="details  sm:!flex ">
               <div className="location ">
                 <span>28.538336</span>
                 <span>-81.379234</span>
@@ -165,3 +125,44 @@ const Page = () => {
 };
 
 export default Page;
+
+const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
+
+const firstName = {
+  initial: {
+    y: 0,
+  },
+  animate: {
+    y: 0,
+    transition: {
+      delayChildren: 0.6,
+      staggerChildren: 0.04,
+      staggerDirection: -1,
+    },
+  },
+};
+
+const lastName = {
+  initial: {
+    y: 0,
+  },
+  animate: {
+    y: 0,
+    transition: {
+      delayChildren: 0.6,
+      staggerChildren: 0.04,
+      staggerDirection: 1,
+    },
+  },
+};
+
+const letter = {
+  initial: {
+    y: 400,
+  },
+  animate: {
+    y: 0,
+    //@ts-ignore
+    transition: { duration: 1, ...transition },
+  },
+};
