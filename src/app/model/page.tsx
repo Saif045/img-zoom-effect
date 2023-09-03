@@ -65,14 +65,14 @@ const Page = () => {
         <div className="row center top-row">
           <div className="top">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 20 }}
               animate={{
                 opacity: 1,
                 y: 0,
                 transition: { delay: 1.2, ...transition },
               }}
-              className="details">
-              <div className="location">
+              className="details z-20">
+              <div className="location ">
                 <span>28.538336</span>
                 <span>-81.379234</span>
               </div>
